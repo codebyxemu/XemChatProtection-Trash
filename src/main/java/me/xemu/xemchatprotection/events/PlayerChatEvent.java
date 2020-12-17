@@ -36,10 +36,7 @@ public class PlayerChatEvent implements Listener
                             staff.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("NotifyStaff.Message").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
                         }
                     };
-                }
-
-
-
+                };
 
                 break;
             }
