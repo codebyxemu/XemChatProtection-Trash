@@ -1,0 +1,16 @@
+Words: # These words are being checked in lower-case. There is no reason to worry about capital and lowercase letters :)
+  - "fuck"
+  - "shit"
+  - "whore"
+  - "prosecute"
+  - "suck"
+  - "kys"
+  - "killyourself"
+  - "dieinhell"
+  - "hell"
+# These words are really simple, I recommend adding more of them - no limits :)
+
+# Available Placeholders: <player> <message>
+MessageBlocked: "&8[&5&lXemChatProtection&8] &7Your message was &cdeleted &7because it contained a &cblocked &7word."
+
+# Thanks alot of using my plugin.
