@@ -13,4 +13,9 @@ Words: # These words are being checked in lower-case. There is no reason to worr
 # Available Placeholders: <player> <message>
 MessageBlocked: "&8[&5&lXemChatProtection&8] &7Your message was &cdeleted &7because it contained a &cblocked &7word."
 
+NotifyStaff:
+  Permission: "xemstaffprotection.notify"
+  Enabled: true
+  Message: "&8[&5&lXemChatProtection&8] &5<player> &7sent &5<message> &7and the message was blocked due to it containing a bad word."
+
 # Thanks alot of using my plugin.

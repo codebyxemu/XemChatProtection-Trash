@@ -23,6 +23,24 @@ public class PlayerChatEvent implements Listener
             {
                 event.setCancelled(true);
                 messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
+
+
+
+
+                if(XemChatProtection.getPlugin().getConfig().getBoolean("NotifyStaff.Enabled"))
+                {
+                    for (Player staff : Bukkit.getServer().getOnlinePlayers())
+                    {
+                        if(staff.hasPermission(XemChatProtection.getPlugin().getConfig().getString("NotifyStaff.Permission")))
+                        {
+                            staff.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("NotifyStaff.Message").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
+                        }
+                    };
+                }
+
+
+
+
                 break;
             }
         }
