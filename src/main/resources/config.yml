@@ -1,3 +1,8 @@
+Help:
+  - "&5&lXEMCHATPROTECTION &8- &7Running version &5<version>"
+  - ""
+  - "&5/xemchatprotection reload &8- &7Reloads plugin configuration"
+  - ""
 Words: # These words are being checked in lower-case. There is no reason to worry about capital and lowercase letters :)
   - "fuck"
   - "shit"
@@ -13,9 +18,19 @@ Words: # These words are being checked in lower-case. There is no reason to worr
 # Available Placeholders: <player> <message>
 MessageBlocked: "&8[&5&lXemChatProtection&8] &7Your message was &cdeleted &7because it contained a &cblocked &7word."
 
+NoPermission: "&8[&5&lXemChatProtection&8] &cYou don't have the required permissions."
+
+# BETA : Blocks every message containing .net, .com, www. or anything else.
+AdvertisementBlocker: true
+
 NotifyStaff:
-  Permission: "xemstaffprotection.notify"
+  Permission: "xemchatprotection.notify"
   Enabled: true
   Message: "&8[&5&lXemChatProtection&8] &5<player> &7sent &5<message> &7and the message was blocked due to it containing a bad word."
+
+ReloadCommand:
+  Permission: "xemchatprotection.reload"
+  Enabled: true
+  Message: "&8[&5&lXemChatProtection&8] &7Successfully reloaded configuration file!"
 
 # Thanks alot of using my plugin.

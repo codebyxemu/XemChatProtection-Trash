@@ -3,3 +3,7 @@ version: ${project.version}
 main: me.xemu.xemchatprotection.XemChatProtection
 api-version: 1.16
 authors: [ Xemu ]
+
+commands:
+  xemchatprotection:
+    aliases: [xcp]

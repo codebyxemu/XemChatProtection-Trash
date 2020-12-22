@@ -8,6 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 public class PlayerChatEvent implements Listener
 {
 
@@ -19,13 +23,33 @@ public class PlayerChatEvent implements Listener
 
         for(String blocked : XemChatProtection.getPlugin().getConfig().getStringList("Words"))
         {
+            if(XemChatProtection.getPlugin().getConfig().getBoolean("AdvertisementBlocker"))
+            {
+                if(message.contains("www.") || message.endsWith(".net") || message.endsWith(".com") || message.contains(".com") || message.contains(".net"))
+                {
+                    event.setCancelled(true);
+                    messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
+
+                    if(XemChatProtection.getPlugin().getConfig().getBoolean("NotifyStaff.Enabled"))
+                    {
+                        for (Player staff : Bukkit.getServer().getOnlinePlayers())
+                        {
+                            if(staff.hasPermission(XemChatProtection.getPlugin().getConfig().getString("NotifyStaff.Permission")))
+                            {
+                                staff.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("NotifyStaff.Message").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
+                            }
+                        };
+                    };
+
+
+                    break;
+                };
+            };
+
             if(message.contains(blocked.toLowerCase()))
             {
                 event.setCancelled(true);
                 messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
-
-
-
 
                 if(XemChatProtection.getPlugin().getConfig().getBoolean("NotifyStaff.Enabled"))
                 {
