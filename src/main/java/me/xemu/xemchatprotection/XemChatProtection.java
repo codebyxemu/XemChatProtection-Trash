@@ -1,6 +1,5 @@
 package me.xemu.xemchatprotection;
 
-import me.xemu.xemchatprotection.commands.ReloadConfigCommand;
 import me.xemu.xemchatprotection.events.PlayerChatEvent;
 import me.xemu.xemchatprotection.utils.metrics.MetricsLite;
 import org.bukkit.Bukkit;
@@ -17,9 +16,6 @@ public final class XemChatProtection extends JavaPlugin
 
         getConfig().options().copyDefaults(true);
         saveConfig();
-
-        getCommand("xemchatprotection").setExecutor(new ReloadConfigCommand());
-
 
         // Metrics
         final int pluginID = 9675;
@@ -43,4 +39,6 @@ public final class XemChatProtection extends JavaPlugin
         return plugin;
     };
 
+
+    
 };
