@@ -1,5 +1,7 @@
-#
-AutoReload: true
+
+Bypass:
+  Enabled: true
+  Permission: "xemchatprotection.bypass"
 
 Help:
   - "&5&lXEMCHATPROTECTION &8- &7Running version &5<version>"

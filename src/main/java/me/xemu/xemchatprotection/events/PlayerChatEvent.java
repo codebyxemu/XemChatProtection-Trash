@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.omg.CORBA.OBJECT_NOT_EXIST;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,6 @@ import java.util.regex.Pattern;
 
 public class PlayerChatEvent implements Listener
 {
-
     private boolean checkMessage(String string)
     {
         String chat = string;
@@ -34,12 +34,18 @@ public class PlayerChatEvent implements Listener
 
     @EventHandler protected void onPlayerChat(AsyncPlayerChatEvent event)
     {
+
         final String message = event.getMessage().toLowerCase();
         final Player messageAuthor = event.getPlayer();
 
         if(checkMessage(message))
         {
-            event.setCancelled(true);
+            if(XemChatProtection.bypassEnabled == true && !messageAuthor.hasPermission(XemChatProtection.bypassPermission))
+            {
+                event.setCancelled(true);
+            } else {
+                event.setCancelled(false);
+            };
             messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
 
             for (Player staff : Bukkit.getOnlinePlayers())
@@ -57,8 +63,12 @@ public class PlayerChatEvent implements Listener
             {
                 if(message.contains("www.") || message.endsWith(".net") || message.endsWith(".com") || message.contains(".com") || message.contains(".net"))
                 {
-                    event.setCancelled(true);
-                    messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
+                    if(XemChatProtection.bypassEnabled == true && !messageAuthor.hasPermission(XemChatProtection.bypassPermission))
+                    {
+                        event.setCancelled(true);
+                    } else {
+                        event.setCancelled(false);
+                    };                    messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
 
                     if(XemChatProtection.getPlugin().getConfig().getBoolean("NotifyStaff.Enabled"))
                     {
@@ -78,8 +88,12 @@ public class PlayerChatEvent implements Listener
 
             if(message.contains(blocked.toLowerCase()))
             {
-                event.setCancelled(true);
-                messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
+                if(XemChatProtection.bypassEnabled == true && !messageAuthor.hasPermission(XemChatProtection.bypassPermission))
+                {
+                    event.setCancelled(true);
+                } else {
+                    event.setCancelled(false);
+                };                messageAuthor.sendMessage(Utils.chat(XemChatProtection.getPlugin().getConfig().getString("MessageBlocked").replaceAll("<message>", message).replaceAll("<player>", messageAuthor.getName())));
 
                 if(XemChatProtection.getPlugin().getConfig().getBoolean("NotifyStaff.Enabled"))
                 {

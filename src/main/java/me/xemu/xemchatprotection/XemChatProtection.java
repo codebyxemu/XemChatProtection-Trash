@@ -10,9 +10,14 @@ public final class XemChatProtection extends JavaPlugin
 
     private static XemChatProtection plugin;
 
+    public static boolean bypassEnabled = true;
+    public static String bypassPermission;
+
     @Override public void onEnable()
     {
         plugin = this;
+        bypassEnabled = getConfig().getBoolean("Bypass.Enabled");
+        bypassPermission = getConfig().getString("Bypass.Permission");
 
         getConfig().options().copyDefaults(true);
         saveConfig();
